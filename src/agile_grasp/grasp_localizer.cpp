@@ -16,6 +16,7 @@ GraspLocalizer::GraspLocalizer(ros::NodeHandle& node, const std::string& cloud_t
   
   // create ROS publisher for grasps
   grasps_pub_ = node.advertise<agile_grasp::Grasps>("grasps", 10);
+  grasps_handles_pub_ = node.advertise<agile_grasp::Grasps>("grasps_handles", 10);
   
   // create localization object and initialize its parameters
   localization_ = new Localization(params.num_threads_, true, params.plotting_mode_);
@@ -109,7 +110,7 @@ void GraspLocalizer::localizeGrasps()
       handles_ = localization_->findHandles(antipodal_hands_, min_inliers_, 0.005);
       
       // publish handles
-      grasps_pub_.publish(createGraspsMsg(handles_));
+      grasps_handles_pub_.publish(createGraspsMsg(handles_));
       ros::Duration(1.0).sleep();
       
       // publish hands contained in handles

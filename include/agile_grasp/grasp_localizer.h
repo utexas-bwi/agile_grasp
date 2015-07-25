@@ -172,6 +172,7 @@ private:
   PointCloud::Ptr cloud_left_, cloud_right_; ///< the point clouds
   ros::Subscriber cloud_sub_; ///< the subscriber for the point cloud topic
   ros::Publisher grasps_pub_; ///< the publisher for the antipodal grasps
+  ros::Publisher grasps_handles_pub_; ///< the publisher for the handles grasps
   Localization* localization_; ///< a pointer to a localization object
   std::vector<GraspHypothesis> hands_; ///< the grasp hypotheses found by the hand search
   std::vector<GraspHypothesis> antipodal_hands_; ///< the antipodal grasps predicted by the SVM
