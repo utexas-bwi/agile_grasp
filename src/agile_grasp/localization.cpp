@@ -380,6 +380,8 @@ std::vector<Handle> Localization::findHandles(const std::vector<GraspHypothesis>
 {
 	HandleSearch handle_search;
 	std::vector<Handle> handles = handle_search.findHandles(hand_list, min_inliers, min_length);
+	
+	
 	if (plotting_mode_ == PCL_PLOTTING)
 		plot_.plotHandles(handles, cloud_, "Handles");
 	else if (plotting_mode_ == RVIZ_PLOTTING)
