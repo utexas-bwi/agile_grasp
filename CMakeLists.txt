@@ -1,3 +1,7 @@
+                                                                     
+                                                                     
+                                                                     
+                                             
 cmake_minimum_required(VERSION 2.8.3)
 project(agile_grasp)
 
@@ -160,6 +164,11 @@ target_link_libraries(hand_search finger_hand grasp_hypothesis plot quadric rota
 #############
 ## Install ##
 #############
+
+install(TARGETS quadric finger_hand handle rotating_hand antipodal localization learning grasp_localizer handle_search grasp_hypothesis plot hand_search
+        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 
 ## Mark cpp header files for installation
 install(DIRECTORY include/${PROJECT_NAME}/
