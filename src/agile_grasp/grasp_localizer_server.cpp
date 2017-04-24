@@ -19,7 +19,8 @@ GraspLocalizerServer::GraspLocalizerServer(ros::NodeHandle& node, const std::str
   grasps_handles_pub_ = node.advertise<agile_grasp::Grasps>("grasps_handles", 10);
   
   // service
-  grasps_service = node.advertiseService("find_grasps", &GraspLocalizerServer::service_callback,this);
+  ROS_INFO("Starting service...");
+  grasps_service = node.advertiseService("find_agile_grasps", &GraspLocalizerServer::service_callback,this);
   
   // create localization object and initialize its parameters
   localization_ = new Localization(params.num_threads_, true, params.plotting_mode_);
