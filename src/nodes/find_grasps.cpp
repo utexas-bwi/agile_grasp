@@ -29,7 +29,7 @@ int main(int argc, char** argv)
   ros::init(argc, argv, "find_grasps");
   ros::NodeHandle node("~");
   
-  GraspLocalizer::Parameters params;
+  GraspLocalizerServer::Parameters params;
   
   // camera transforms (poses)
   Eigen::Matrix4d base_tf, sqrt_tf;
@@ -102,7 +102,7 @@ int main(int argc, char** argv)
   std::cout << "  plot_mode: " << PLOT_MODES[params.plotting_mode_] << "\n";
   std::cout << "  marker_lifetime: " << params.marker_lifetime_ << "\n";
   
-  GraspLocalizer loc(node, cloud_topic, cloud_frame, cloud_type, svm_file_name, params);
+  GraspLocalizerServer loc(node, cloud_topic, cloud_frame, cloud_type, svm_file_name, params);
   loc.localizeGrasps();
   
 	return 0;

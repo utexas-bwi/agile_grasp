@@ -29,8 +29,8 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef GRASP_LOCALIZER_H_
-#define GRASP_LOCALIZER_H_
+#ifndef GRASP_LOCALIZER_SERVER_H_
+#define GRASP_LOCALIZER_SERVER_H_
 
 #include <eigen_conversions/eigen_msg.h>
 #include <pcl_conversions/pcl_conversions.h>
