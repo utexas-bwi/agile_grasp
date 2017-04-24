@@ -53,6 +53,9 @@ set(CMAKE_CXX_FLAGS "-DNDEBUG -O3 -fopenmp -Wno-deprecated -Wenum-compare")
 ## Generate messages in the 'msg' folder
 add_message_files(FILES CloudSized.msg Grasp.msg Grasps.msg)
 
+## Generate services in the 'srv' folder
+add_service_files(FILES FindGrasps.srv)
+
 ## Generate added messages and services with any dependencies listed here
 generate_messages(DEPENDENCIES geometry_msgs sensor_msgs std_msgs)
 
@@ -121,6 +124,7 @@ add_library(localization src/${PROJECT_NAME}/localization.cpp)
 add_library(learning src/${PROJECT_NAME}/learning.cpp)
 add_library(handle src/${PROJECT_NAME}/handle.cpp)
 add_library(grasp_localizer src/${PROJECT_NAME}/grasp_localizer.cpp)
+add_library(grasp_localizer_server src/${PROJECT_NAME}/grasp_localizer_server.cpp)
 add_library(handle_search src/${PROJECT_NAME}/handle_search.cpp)
 add_library(grasp_hypothesis src/${PROJECT_NAME}/grasp_hypothesis.cpp)
 add_library(plot src/${PROJECT_NAME}/plot.cpp)
