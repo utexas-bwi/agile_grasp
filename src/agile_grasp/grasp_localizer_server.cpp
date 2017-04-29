@@ -161,6 +161,9 @@ bool GraspLocalizerServer::service_callback(agile_grasp::FindGrasps::Request &re
 	sensor_msgs::PointCloud2 cloud = req.object_cloud;
 	pcl::fromROSMsg(cloud, *cloud_left_);
 	
+	//hand offset approach
+	//double hand_offset_approach = req.approach_offset;
+	
 	//compute grasp  points
 	std::vector<int> indices(0);
 	hands_ = localization_->localizeHands(cloud_left_, cloud_left_->size(), indices, false, false);
@@ -173,7 +176,7 @@ bool GraspLocalizerServer::service_callback(agile_grasp::FindGrasps::Request &re
     
     for (unsigned int i = 0; i < grasps.grasps.size(); i++){
 		geometry_msgs::PoseStamped p_grasp_i = graspToPose(grasps.grasps.at(i),HAND_OFFSET_GRASP,req.object_cloud.header.frame_id);
-		geometry_msgs::PoseStamped p_approach_i = graspToPose(grasps.grasps.at(i),HAND_OFFSET_APPROACH,req.object_cloud.header.frame_id);
+		geometry_msgs::PoseStamped p_approach_i = graspToPose(grasps.grasps.at(i),HAND_OFFSET_GRASP,req.object_cloud.header.frame_id);
 		
 		res.grasp_poses.push_back(p_grasp_i);
 		res.approach_poses.push_back(p_approach_i);
