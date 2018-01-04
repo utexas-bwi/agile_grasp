@@ -1,5 +1,7 @@
 #include <agile_grasp/learning.h>
 
+using namespace cv;
+using namespace cv::ml;
 void Learning::trainBalanced(const std::vector<GraspHypothesis>& hands_list, const std::vector<int> & sizes,
 	const std::string& file_name, const Eigen::Matrix3Xd& cam_pos, int max_positive, bool is_plotting)
 {
@@ -178,11 +180,11 @@ std::vector<GraspHypothesis> Learning::classify(const std::vector<GraspHypothesi
 	}
 		
 	// load the SVM model from the file
-	CvSVM svm;
+	Ptr<SVM> svm;
 	double t0 = omp_get_wtime();
 	try
 	{
-		svm.load(svm_filename.c_str());
+		SVM::load(svm_filename.c_str());
 	}
 	catch (cv::Exception& e)
 	{
@@ -190,7 +192,7 @@ std::vector<GraspHypothesis> Learning::classify(const std::vector<GraspHypothesi
 		return antipodal_hands;
 	}
 	std::cout << " time for loading SVM: " << omp_get_wtime() - t0 << "\n";
-  std::cout << " # of support vectors: " << svm.get_support_vector_count() << "\n";
+  std::cout << " # of support vectors: " << svm->getSupportVectors().rows << "\n";
 	cv::HOGDescriptor hog;
 	hog.winSize = cv::Size(64, 64);
 	std::vector<bool> is_antipodal(hands_list.size());
@@ -222,7 +224,7 @@ std::vector<GraspHypothesis> Learning::classify(const std::vector<GraspHypothesi
 		cv::Mat features(1, hog.getDescriptorSize() * 2, CV_32FC1);
 		for (int k = 0; k < descriptors.size(); k++)
 			features.at<float>(k) = descriptors[k];
-		float prediction = svm.predict(features);
+		float prediction = svm->predict(features);
 		if (prediction == 1)
 		{
 			GraspHypothesis grasp = hands_list[i];
@@ -255,6 +257,7 @@ void Learning::convertData(const std::vector<Instance>& instances,
 	hog.winSize = cv::Size(64, 64);
 	cv::Mat features(instances.size(), hog.getDescriptorSize() * 2, CV_32FC1);
 	cv::Mat labels(instances.size(), 1, CV_32FC1);
+    Ptr<TrainData> data = TrainData::create(features, ROW_SAMPLE, labels);
 	int num_positives = 0;
 
 	for (int i = 0; i < instances.size(); i++)
@@ -294,24 +297,25 @@ void Learning::convertData(const std::vector<Instance>& instances,
 			labels.at<float>(i, 0) = -1.0;
 	}
 
+    Ptr<SVM> svm = SVM::create();
   // train the SVM
-	CvSVMParams params;
+
   // cv::Mat weights(1, 2, CV_32FC1);
   // weights.at<float>(0,0) = 0.9;
   // weights.at<float>(0,1) = 0.1;
   // CvMat cv1_weights = weights;  
   // params.class_weights = &cv1_weights;
-	params.svm_type = CvSVM::C_SVC;
+    svm->setType(SVM::C_SVC);
+
   if (uses_linear_kernel)
-    params.kernel_type = CvSVM::LINEAR;
+      svm->setKernel(SVM::LINEAR);
   else
   {
-    params.kernel_type = CvSVM::POLY;
-    params.degree = 2;
+      svm->setKernel(SVM::POLY);
+        svm->setDegree(2);
 	}
-  CvSVM svm;
-	svm.train(features, labels, cv::Mat(), cv::Mat(), params);
-	svm.save(file_name.c_str());
+	svm->train(data);
+	svm->save(file_name.c_str());
 	std::cout << "# training examples: " << features.rows << " (# positives: " << num_positives
 			<< ", # negatives: " << features.rows - num_positives << ")\n";
 	std::cout << "Saved trained SVM as " << file_name << "\n";
