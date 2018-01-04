@@ -108,7 +108,7 @@ std::vector<GraspHypothesis> RotatingHand::evaluateHand(double init_bite, const 
 		finger_hand_.evaluateFingers(init_bite);
 		finger_hand_.evaluateHand();
 
-		if (finger_hand_.getHand().sum() > 0)
+		if (finger_hand_.getHand().count() > 0)
 		{
 			// find deepest hand
 			finger_hand_.deepenHand(init_bite, finger_hand_.getHandDepth());

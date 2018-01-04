@@ -1,13 +1,10 @@
-                                                                     
-                                                                     
-                                                                     
-                                             
 cmake_minimum_required(VERSION 2.8.3)
 project(agile_grasp)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+
 find_package(catkin REQUIRED COMPONENTS eigen_conversions geometry_msgs
 message_generation pcl_conversions roscpp sensor_msgs std_msgs visualization_msgs tf_conversions)
 
@@ -26,6 +23,7 @@ endif()
 
 
 ## System dependencies are found with CMake's conventions
+
 find_package(LAPACK REQUIRED)
 find_package(OpenCV 2 REQUIRED)
 find_package(PCL REQUIRED)
