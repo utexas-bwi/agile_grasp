@@ -25,7 +25,7 @@ endif()
 ## System dependencies are found with CMake's conventions
 
 find_package(LAPACK REQUIRED)
-find_package(OpenCV 2 REQUIRED)
+find_package(OpenCV REQUIRED)
 find_package(PCL REQUIRED)
 #~ find_package(VTK 6.0 REQUIRED NO_MODULE) # required in Fedora Core
 
