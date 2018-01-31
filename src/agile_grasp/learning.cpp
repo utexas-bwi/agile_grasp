@@ -183,7 +183,7 @@ std::vector<GraspHypothesis> Learning::classify(const std::vector<GraspHypothesi
 	double t0 = omp_get_wtime();
 	try
 	{
-		svm->load(svm_filename.c_str());
+		svm = ml::SVM::load(svm_filename.c_str());
 	}
 	catch (cv::Exception& e)
 	{
@@ -191,7 +191,7 @@ std::vector<GraspHypothesis> Learning::classify(const std::vector<GraspHypothesi
 		return antipodal_hands;
 	}
 	std::cout << " time for loading SVM: " << omp_get_wtime() - t0 << "\n";
-  std::cout << " # of support vectors: " << svm->getSupportVectors().rows << "\n";
+    std::cout << " # of support vectors: " << svm->getSupportVectors().rows << "\n";
 	cv::HOGDescriptor hog;
 	hog.winSize = cv::Size(64, 64);
 	std::vector<bool> is_antipodal(hands_list.size());

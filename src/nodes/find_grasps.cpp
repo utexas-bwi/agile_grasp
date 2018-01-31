@@ -91,9 +91,9 @@ int main(int argc, char** argv)
   std::cout << " Robot Hand Model\n";
   std::cout << "  finger_width: " << params.finger_width_ << "\n";
   std::cout << "  hand_outer_diameter: " << params.hand_outer_diameter_ << "\n";
-  std::cout << "  hand_depth: " << params.finger_width_ << "\n";
+  std::cout << "  hand_depth: " << params.hand_depth_ << "\n";
   std::cout << "  init_bite: " << params.finger_width_ << "\n";
-  std::cout << "  hand_height: " << params.finger_width_ << "\n";
+  std::cout << "  hand_height: " << params.hand_height_ << "\n";
   std::cout << " Antipodal Grasps Prediction\n";
   std::cout << "  svm_file_name: " << svm_file_name << "\n";
   std::cout << " Handle Search\n";
@@ -101,7 +101,7 @@ int main(int argc, char** argv)
   std::cout << " Visualization\n";
   std::cout << "  plot_mode: " << PLOT_MODES[params.plotting_mode_] << "\n";
   std::cout << "  marker_lifetime: " << params.marker_lifetime_ << "\n";
-  
+
   GraspLocalizerServer loc(node, cloud_topic, cloud_frame, cloud_type, svm_file_name, params);
   loc.localizeGrasps();
   

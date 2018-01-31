@@ -30,7 +30,8 @@ find_package(PCL REQUIRED)
 #~ find_package(VTK 6.0 REQUIRED NO_MODULE) # required in Fedora Core
 
 ## Set compiler optimization flags
-set(CMAKE_CXX_FLAGS "-DNDEBUG -O3 -fopenmp -Wno-deprecated -Wenum-compare")
+#set(CMAKE_CXX_FLAGS "-DNDEBUG -O3 -fopenmp -Wno-deprecated -Wenum-compare")
+set(CMAKE_CXX_FLAGS "-Wno-deprecated -Wenum-compare")
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
