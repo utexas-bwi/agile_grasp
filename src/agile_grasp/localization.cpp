@@ -109,7 +109,7 @@ std::vector<GraspHypothesis> Localization::localizeHands(const PointCloud::Ptr& 
 		
 	// find hand configurations
   HandSearch hand_search(finger_width_, hand_outer_diameter_, hand_depth_, hand_height_, init_bite_, num_threads_, 
-		num_samples_, plots_hands);
+		num_samples_, plots_hands, cam_tf_left_, cam_tf_right_);
 	hand_list = hand_search.findHands(cloud, pts_cam_source, indices, cloud_plot, calculates_antipodal, uses_clustering);
 
 	// remove hands at boundaries of workspace
