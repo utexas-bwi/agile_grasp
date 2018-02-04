@@ -183,7 +183,7 @@ std::vector<GraspHypothesis> Learning::classify(const std::vector<GraspHypothesi
 	double t0 = omp_get_wtime();
 	try
 	{
-		svm->load(svm_filename.c_str());
+		svm = ml::SVM::load(svm_filename.c_str());
 	}
 	catch (cv::Exception& e)
 	{
