@@ -2,8 +2,8 @@
 Changelog for package agile_grasp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.0 (2018-03-03)
+------------------
 * Custom UTexas-BWI version for Kinetic
 * Fix SVM loading
 * Initialize camera transforms in hand search process
