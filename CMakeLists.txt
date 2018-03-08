@@ -158,8 +158,8 @@ add_executable(find_grasps src/nodes/find_grasps.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-add_dependencies(grasp_localizer ${catkin_EXPORTED_TARGETS})
-add_dependencies(grasp_localizer_server ${catkin_EXPORTED_TARGETS})
+add_dependencies(grasp_localizer ${${PROJECT_NAME}_EXPORTED_TARGETS})
+add_dependencies(grasp_localizer_server ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(quadric ${PCL_LIBRARIES} lapack)
