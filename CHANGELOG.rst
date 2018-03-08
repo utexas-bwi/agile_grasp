@@ -2,8 +2,8 @@
 Changelog for package agile_grasp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.1 (2018-03-08)
+------------------
 * make me maintainer of this fork (`utexas-bwi/bwi#54 <https://github.com/utexas-bwi/bwi/issues/54>`_)
 * add message dependency for grasp_localizer (`utexas-bwi/bwi#54 <https://github.com/utexas-bwi/bwi/issues/54>`_)
 * switch dependency from OpenCV2 to OpenCV3 (`utexas-bwi/bwi#54 <https://github.com/utexas-bwi/bwi/issues/54>`_)
