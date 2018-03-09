@@ -2,8 +2,8 @@
 Changelog for package agile_grasp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.8.3 (2018-03-09)
+------------------
 * install SVM data files (`utexas-bwi/bwi#54 <https://github.com/utexas-bwi/bwi/issues/54>`_)
 * Contributors: Jack O'Quin
 
