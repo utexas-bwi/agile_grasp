@@ -201,3 +201,9 @@ install(DIRECTORY include/${PROJECT_NAME}/
 install(DIRECTORY launch/
 	DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
 
+## install SVM data files
+install(FILES
+          svm_032015_20_20
+          svm_032015_20_20_same
+          svm_032015_linear_20_20_same
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
