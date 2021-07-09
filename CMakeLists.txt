@@ -5,6 +5,7 @@ project(agile_grasp)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 
+if( $ENV{SEGBOT_HAS_ARM} )
 find_package(catkin REQUIRED COMPONENTS eigen_conversions geometry_msgs
 message_generation pcl_conversions roscpp sensor_msgs std_msgs visualization_msgs tf_conversions)
 
@@ -207,3 +208,4 @@ install(FILES
           svm_032015_20_20_same
           svm_032015_linear_20_20_same
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+endif()
